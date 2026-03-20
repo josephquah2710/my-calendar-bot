@@ -1,8 +1,7 @@
 import os
 import logging
 from datetime import datetime, timedelta, time as dtime
-import psycopg2
-from psycopg2.extras import RealDictCursor
+import psycopg
 from telegram import Update
 from telegram.ext import (
     ApplicationBuilder, CommandHandler, MessageHandler,
@@ -23,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 # ── Database ──────────────────────────────────────────────────────────────────
 def get_con():
-    return psycopg2.connect(DATABASE_URL)
+    return psycopg.connect(DATABASE_URL)
 
 def init_db():
     with get_con() as con:
